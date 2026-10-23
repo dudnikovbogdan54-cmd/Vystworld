@@ -1,0 +1,6 @@
+# HTTPS URL of your deployed website, without a trailing slash.
+website-url: "https://YOUR-SITE.vercel.app"
+# Must exactly match MINECRAFT_BRIDGE_SECRET in the website environment.
+# Do not share this value publicly.
+bridge-secret: "CHANGE-THIS-TO-A-LONG-RANDOM-SECRET"
+poll-seconds: 30
