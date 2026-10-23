@@ -28,3 +28,21 @@ create index if not exists login_events_created_at_idx on public.login_events(cr
 create index if not exists login_events_user_id_idx on public.login_events(user_id, created_at desc);
 alter table public.login_events enable row level security;
 -- Intentionally no policies: only server-side service-role requests can read/write this table.
+
+
+-- Automatically purge login audit entries older than 90 days whenever a new entry is written.
+create or replace function public.purge_old_login_events()
+returns trigger
+language plpgsql
+security definer
+set search_path = public
+as $$
+begin
+  delete from public.login_events where created_at < now() - interval '90 days';
+  return new;
+end;
+$$;
+drop trigger if exists login_events_retention_trigger on public.login_events;
+create trigger login_events_retention_trigger
+after insert on public.login_events
+for each row execute function public.purge_old_login_events();
