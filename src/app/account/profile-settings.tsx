@@ -28,10 +28,6 @@ export default function ProfileSettings({ userId, initialName, initialAvatar, in
     const selected = themes.find((item) => item.value === theme) || themes[0];
     document.documentElement.style.setProperty("--green", selected.color);
     document.documentElement.style.setProperty("--accent", selected.color);
-    return () => {
-      document.documentElement.style.removeProperty("--green");
-      document.documentElement.style.removeProperty("--accent");
-    };
   }, [theme]);
 
   async function save() {
@@ -41,6 +37,7 @@ export default function ProfileSettings({ userId, initialName, initialAvatar, in
       id: userId, display_name: name.trim().slice(0, 24), avatar, theme, updated_at: new Date().toISOString()
     }, { onConflict: "id" });
     setBusy(false);
+    if (!error) window.localStorage.setItem("vystworld-theme", theme);
     setMessage(error ? "Не удалось сохранить. Проверь, что выполнил SQL-настройку профилей в Supabase." : "Настройки сохранены!");
   }
 
