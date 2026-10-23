@@ -4,12 +4,14 @@ import { Suspense, useState } from "react";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { createClient } from "@/lib/supabase/client";
+import TurnstileCaptcha from "@/components/turnstile-captcha";
 
 function LoginForm() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [busy, setBusy] = useState(false);
+  const [captchaToken, setCaptchaToken] = useState("");
   const router = useRouter();
   const search = useSearchParams();
   const requestedNext = search.get("next") || "/account";
@@ -21,7 +23,7 @@ function LoginForm() {
     if (!configured) return setError("Вход пока не настроен: администратору нужно подключить Supabase в Vercel.");
     setBusy(true); setError("");
     const supabase = createClient();
-    const { error } = await supabase.auth.signInWithPassword({ email, password });
+    const { error } = await supabase.auth.signInWithPassword({ email, password, options: { captchaToken } });
     setBusy(false);
     if (error) { setError(error.message); return; }
     await fetch("/api/auth/login-event", { method: "POST" }).catch(() => undefined);
@@ -49,7 +51,8 @@ function LoginForm() {
       <form onSubmit={login}>
         <div className="field"><label htmlFor="email">Email</label><input id="email" type="email" autoComplete="email" required value={email} onChange={e=>setEmail(e.target.value)}/></div>
         <div className="field"><label htmlFor="password">Пароль</label><input id="password" type="password" autoComplete="current-password" required value={password} onChange={e=>setPassword(e.target.value)}/></div>
-        <button className="btn primary wide" disabled={busy || !configured}>{busy ? "Входим…" : "Войти"}</button>
+        <TurnstileCaptcha onToken={setCaptchaToken}/>
+        <button className="btn primary wide" disabled={busy || !configured || (Boolean(process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY) && !captchaToken)}>{busy ? "Входим…" : "Войти"}</button>
       </form>
       <p className="muted" style={{fontSize:13,marginTop:18}}>Нет аккаунта? <Link href="/register" style={{color:"var(--green)"}}>Зарегистрироваться</Link></p>
       <p className="muted" style={{fontSize:13,marginTop:10}}><Link href="/forgot-password" style={{color:"var(--green)"}}>Забыли пароль?</Link></p>
