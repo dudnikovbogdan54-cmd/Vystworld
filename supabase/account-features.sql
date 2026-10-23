@@ -9,23 +9,8 @@ create table if not exists public.profiles (
 );
 -- Migrate older emoji-based avatar values to stable icon IDs.
 alter table public.profiles drop constraint if exists profiles_avatar_check;
-update public.profiles set avatar = case avatar
-  when '🟩' then 'creeper'
-  when '⛏️' then 'miner'
-  when '🐺' then 'wolf'
-  when '🐉' then 'dragon'
-  when '👑' then 'king'
-  when '💎' then 'diamond'
-  when '🧙' then 'mage'
-  when '⚔️' then 'warrior'
-  when 'creeper' then 'creeper'
-  when 'miner' then 'miner'
-  when 'wolf' then 'wolf'
-  when 'dragon' then 'dragon'
-  when 'king' then 'king'
-  when 'diamond' then 'diamond'
-  when 'mage' then 'mage'
-  when 'warrior' then 'warrior'
+update public.profiles set avatar = case
+  when avatar in ('creeper','miner','wolf','dragon','king','diamond','mage','warrior') then avatar
   else 'creeper'
 end;
 alter table public.profiles alter column avatar set default 'creeper';
