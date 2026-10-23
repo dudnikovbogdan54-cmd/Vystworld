@@ -23,6 +23,7 @@ function LoginForm() {
     const { error } = await supabase.auth.signInWithPassword({ email, password });
     setBusy(false);
     if (error) { setError(error.message); return; }
+    await fetch("/api/auth/login-event", { method: "POST" }).catch(() => undefined);
     router.push(next); router.refresh();
   }
 
