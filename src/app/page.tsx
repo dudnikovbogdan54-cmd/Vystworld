@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { catalog } from "@/lib/catalog";
 import CopyIp from "./copy-ip";
+import { Pickaxe, UsersRound, Sprout } from "lucide-react";
 
 const steps = [
   { n: "01", title: "Скопируй адрес", text: "Нажми кнопку копирования рядом с IP сервера." },
@@ -31,9 +32,9 @@ export default function Home() {
     <section className="container section" id="about">
       <div className="sectionhead"><div><span className="tag">О ПРОЕКТЕ</span><h2>Больше, чем просто сервер</h2><p>Всё необходимое для старта — в одном месте.</p></div></div>
       <div className="featuregrid">
-        <article className="feature"><div className="symbol">⚔️</div><h3>Свои приключения</h3><p>Исследуй мир, собирай ресурсы и развивайся в собственном темпе.</p></article>
-        <article className="feature"><div className="symbol">🤝</div><h3>Играй вместе</h3><p>Знакомься с участниками сообщества и строй общие проекты.</p></article>
-        <article className="feature"><div className="symbol">🌿</div><h3>Развивайся</h3><p>Ставь цели, открывай новые возможности и создавай свою историю.</p></article>
+        <article className="feature"><div className="symbol"><Pickaxe size={25} strokeWidth={1.8} aria-hidden="true" /></div><h3>Свои приключения</h3><p>Исследуй мир, собирай ресурсы и развивайся в собственном темпе.</p></article>
+        <article className="feature"><div className="symbol"><UsersRound size={25} strokeWidth={1.8} aria-hidden="true" /></div><h3>Играй вместе</h3><p>Знакомься с участниками сообщества и строй общие проекты.</p></article>
+        <article className="feature"><div className="symbol"><Sprout size={25} strokeWidth={1.8} aria-hidden="true" /></div><h3>Развивайся</h3><p>Ставь цели, открывай новые возможности и создавай свою историю.</p></article>
       </div>
     </section>
 
