@@ -51,6 +51,7 @@ function LoginForm() {
         <button className="btn primary wide" disabled={busy || !configured}>{busy ? "Входим…" : "Войти"}</button>
       </form>
       <p className="muted" style={{fontSize:13,marginTop:18}}>Нет аккаунта? <Link href="/register" style={{color:"var(--green)"}}>Зарегистрироваться</Link></p>
+      <p className="muted" style={{fontSize:13,marginTop:10}}><Link href="/forgot-password" style={{color:"var(--green)"}}>Забыли пароль?</Link></p>
       <p className="muted" style={{fontSize:12}}>Восстановление пароля можно подключить через письмо Supabase Auth после настройки SMTP.</p>
     </section></main>
   );
