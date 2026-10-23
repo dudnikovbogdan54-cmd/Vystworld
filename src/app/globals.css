@@ -47,3 +47,84 @@ button:disabled{opacity:.6;cursor:not-allowed;transform:none}
 @media(max-width:900px){.navlinks{order:3;width:100%;justify-content:center;flex-wrap:wrap;padding-top:12px;border-top:1px solid #ffffff10}.nav{padding:14px 0}.hero{padding-top:58px}}
 @media(max-width:760px){.steps-grid{grid-template-columns:1fr}.rules-panel{grid-template-columns:1fr;gap:18px}.hero-stats{gap:7px}.hero-stats div{padding:12px 6px}.hero-stats strong{font-size:12px}.hero-stats span{font-size:10px}.footer{gap:16px}.footer-links{gap:12px}}
 @media(max-width:430px){.nav-account{padding:9px 11px;font-size:12px}.brand{font-size:14px}.logo{width:34px;height:34px}.navlinks{font-size:12px;gap:12px}.serverbar{font-size:11px}.hero h1{font-size:43px}.hero-stats{grid-template-columns:1fr}.hero-stats div{display:flex;justify-content:space-between;align-items:center;padding:12px}.actions .btn{width:100%}}
+
+/* Adaptive layout: desktop, tablet, mobile and mobile browsers' desktop mode */
+html{width:100%;min-width:0;scroll-padding-top:20px;-webkit-text-size-adjust:100%;text-size-adjust:100%}
+body{width:100%;min-width:0;overflow-x:clip}
+main,.container,section,article,header,footer{min-width:0}
+img,video,svg,canvas{max-width:100%;height:auto}
+button,a,input,summary{-webkit-tap-highlight-color:transparent}
+button,.btn{min-height:44px}
+#about,#connect,#rules,#faq,#shop{scroll-margin-top:22px}
+@media (min-width:1500px){
+ .container{width:min(1320px,calc(100% - 80px))}
+ .hero{padding-top:112px;padding-bottom:82px}
+ .section{padding-top:68px;padding-bottom:82px}
+ .grid,.featuregrid,.steps-grid{gap:22px}
+ .card,.feature,.step-card{padding:28px}
+ .navlinks{gap:28px;font-size:15px}
+}
+@media (min-width:1025px) and (max-width:1240px){
+ .container{width:calc(100% - 56px)}
+ .navlinks{gap:14px;font-size:13px}
+ .nav{gap:12px}
+}
+@media (max-width:1024px){
+ .container{width:calc(100% - 40px)}
+ .nav{gap:12px}
+ .navlinks{gap:12px;font-size:12px}
+ .nav-account{white-space:nowrap}
+ .hero h1{font-size:clamp(44px,7vw,72px)}
+ .grid,.featuregrid{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .card:last-child:nth-child(odd){grid-column:1/-1}
+ .section{padding:40px 0 52px}
+}
+@media (max-width:760px){
+ .container{width:calc(100% - 28px)}
+ .nav{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;padding:12px 0}
+ .navlinks{grid-column:1/-1;order:3;display:flex;justify-content:flex-start;flex-wrap:nowrap;overflow-x:auto;overscroll-behavior-x:contain;max-width:100%;padding:10px 0 3px;border-top:1px solid #ffffff10;scrollbar-width:thin}
+ .navlinks a{flex:0 0 auto;padding:5px 2px}
+ .nav-account{grid-column:2;grid-row:1}
+ .hero{padding:48px 0 36px}
+ .hero h1{font-size:clamp(40px,10vw,60px);letter-spacing:-2px}
+ .hero p{font-size:15px;line-height:1.75}
+ .hero-stats{grid-template-columns:repeat(3,minmax(0,1fr))}
+ .hero-stats div{min-width:0}
+ .hero-stats strong{overflow-wrap:anywhere}
+ .sectionhead{align-items:flex-start}
+ .grid,.featuregrid{grid-template-columns:minmax(0,1fr)}
+ .card:last-child:nth-child(odd){grid-column:auto}
+ .rules-panel{grid-template-columns:minmax(0,1fr)}
+ .connect-panel{align-items:flex-start}
+ .connect-panel>div{min-width:0;max-width:100%}
+ .connect-panel strong{overflow-wrap:anywhere}
+ .footer{display:flex;flex-direction:column}
+ .footer-links{width:100%}
+}
+@media (max-width:430px){
+ .container{width:calc(100% - 24px)}
+ .navlinks{gap:14px}
+ .hero h1{font-size:clamp(36px,10.5vw,46px);letter-spacing:-1.5px}
+ .hero-stats{grid-template-columns:minmax(0,1fr)}
+ .hero-stats div{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px}
+ .hero-stats span{text-align:right}
+ .serverbar{width:100%;gap:8px;padding:12px 10px}
+ .sectionhead h2{font-size:29px;letter-spacing:-1px}
+ .formbox{padding:22px 17px}
+ .table{display:block;max-width:100%;overflow-x:auto}
+ .final-cta{padding:28px 16px}
+ .final-cta h2{letter-spacing:-1px}
+}
+@media (hover:none) and (pointer:coarse){
+ .btn:hover{transform:none}
+ .btn,.navlinks a,summary{touch-action:manipulation}
+}
+@media (max-height:500px) and (orientation:landscape) and (max-width:900px){
+ .hero{padding-top:28px;padding-bottom:24px}
+ .hero h1{font-size:clamp(36px,7vw,54px);margin:16px 0}
+ .hero-stats{margin-top:18px}
+}
+@media (prefers-reduced-motion:reduce){
+ html{scroll-behavior:auto}
+ *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+}
