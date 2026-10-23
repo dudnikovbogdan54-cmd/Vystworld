@@ -166,3 +166,74 @@ button,.btn{min-height:44px}
 
 /* Clean Google provider mark */
 .google-mark{display:inline-grid;place-items:center;width:22px;height:22px;border-radius:50%;background:#fff;color:#4285f4;font-family:Arial,sans-serif;font-size:15px;font-weight:800;line-height:1;flex-shrink:0}
+
+
+/* Compact premium layout refresh */
+:root{--radius-card:16px;--space-section:42px}
+.container{width:min(1080px,calc(100% - 40px))}
+.nav{padding:14px 0;gap:14px}
+.logo{width:34px;height:34px;border-radius:10px;font-size:18px;box-shadow:0 6px 22px #2ac56b1c}
+.navlinks{gap:16px;font-size:12px}
+.nav-account{padding:9px 13px;min-height:38px;border-radius:10px;font-size:12px}
+.btn{padding:10px 14px;min-height:40px;border-radius:10px;font-size:13px}
+.hero{padding:62px 0 42px}
+.eyebrow{padding:6px 10px;font-size:10px;letter-spacing:1px}
+.hero h1{font-size:clamp(38px,6.2vw,68px);letter-spacing:-2.7px;margin:18px 0 12px}
+.hero p{max-width:590px;font-size:15px;line-height:1.7}
+.actions{gap:9px;margin:20px 0}
+.serverbar{margin-top:20px;padding:10px 12px;border-radius:11px;font-size:12px}
+.hero-stats{gap:9px;margin-top:22px;max-width:620px}
+.hero-stats div{padding:12px;border-radius:11px}
+.hero-stats strong{font-size:13px}.hero-stats span{font-size:10px}
+.section{padding:34px 0 46px}
+.sectionhead{margin-bottom:18px;gap:14px}
+.sectionhead h2{font-size:clamp(25px,3.5vw,34px);letter-spacing:-1px;margin-bottom:5px}
+.sectionhead p{font-size:13px}
+.grid,.featuregrid,.steps-grid{gap:12px}
+.card{padding:18px;border-radius:16px}
+.card h3{font-size:19px;margin:13px 0 6px}
+.card p{font-size:12px;line-height:1.6;min-height:38px}
+.tag{font-size:9px;padding:5px 7px}
+.price{font-size:25px;margin:14px 0}
+.feature,.step-card{padding:17px;border-radius:14px}
+.feature h3,.step-card h3{font-size:14px;margin:10px 0 6px}
+.feature p,.step-card p,.rules-panel p,.final-cta p{font-size:12px;line-height:1.65}
+.step-number{width:34px;height:34px;border-radius:10px}
+.connect-panel{padding:17px;border-radius:15px;gap:14px}
+.rules-panel{gap:22px;padding:24px;border-radius:18px}
+.rules-panel h2,.final-cta h2{font-size:clamp(25px,3.5vw,35px);letter-spacing:-1px;margin:12px 0 8px}
+.faq-list{gap:8px}.faq-item{border-radius:12px;padding:0 14px}
+.faq-item summary{font-size:13px;padding:14px 0}.faq-item p{font-size:12px;padding-bottom:14px}
+.final-cta{padding:34px 18px;border-radius:18px}
+.footer{padding:22px 0 28px;gap:16px}.footer-links{gap:10px 14px;font-size:11px}
+.page{min-height:66vh;padding:32px 0}
+.formbox{max-width:420px;margin:12px auto;padding:23px;border-radius:17px}
+.formbox h1{font-size:25px;letter-spacing:-.6px}
+.muted{font-size:13px;line-height:1.6}
+.field{gap:6px;margin:12px 0}.field label{font-size:12px}
+.field input{padding:11px 12px;border-radius:9px;font-size:14px}
+.notice{padding:10px 12px;border-radius:10px;font-size:12px;margin:11px 0}
+.tabs{gap:6px;margin-bottom:14px}.tabs a{padding:8px 10px;border-radius:9px;font-size:12px}
+.profile-preview{padding:12px;margin:14px 0 17px}.profile-avatar{width:48px;height:48px;border-radius:13px;font-size:25px}
+.preset-grid,.theme-grid{gap:6px}.preset,.theme-option{border-radius:10px;padding:8px 5px}
+.shop-categories{gap:7px;margin:18px 0 14px}.shop-categories .btn{padding:9px 13px}
+@media(min-width:1025px){.hero{padding-top:72px;padding-bottom:46px}.section{padding:40px 0 50px}}
+@media(max-width:900px){.navlinks{gap:12px}.hero{padding-top:48px}}
+@media(max-width:760px){
+ .container{width:calc(100% - 28px)}.nav{padding:10px 0;gap:9px}
+ .navlinks{padding:8px 0 2px;gap:14px;font-size:12px}
+ .hero{padding:38px 0 30px}.hero h1{font-size:clamp(36px,9vw,54px);letter-spacing:-1.8px;margin:15px 0 10px}
+ .hero p{font-size:14px}.actions{margin:16px 0;gap:8px}
+ .section{padding:28px 0 36px}.sectionhead{margin-bottom:14px}
+ .grid,.featuregrid,.steps-grid{gap:10px}.card,.feature,.step-card{padding:15px}
+ .rules-panel{padding:19px;gap:14px}.connect-panel{padding:14px}
+ .formbox{padding:21px 16px}.page{padding:22px 0}
+}
+@media(max-width:430px){
+ .container{width:calc(100% - 24px)}.brand{font-size:13px}.logo{width:30px;height:30px}
+ .nav-account{padding:8px 10px;font-size:11px;min-height:36px}
+ .hero h1{font-size:clamp(34px,10vw,43px);letter-spacing:-1.2px}
+ .hero-stats{gap:6px}.hero-stats div{padding:10px}
+ .sectionhead h2{font-size:26px}.card h3{font-size:18px}
+ .formbox h1{font-size:23px}
+}
