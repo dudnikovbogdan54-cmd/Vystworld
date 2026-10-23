@@ -1,0 +1,2 @@
+import Link from "next/link";
+export default function PaymentReturn(){return <main className="container page"><section className="formbox"><h1>Вернулся с оплаты</h1><p className="muted">Спасибо! Статус заказа обновится после проверки платежа сервером. Не закрывай обращение к поддержке, если товар не появился после подтверждённой оплаты.</p><div className="actions"><Link className="btn primary" href="/account">Мои заказы</Link><Link className="btn" href="/shop">В магазин</Link></div></section></main>}
