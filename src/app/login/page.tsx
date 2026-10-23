@@ -12,7 +12,8 @@ function LoginForm() {
   const [busy, setBusy] = useState(false);
   const router = useRouter();
   const search = useSearchParams();
-  const next = search.get("next") || "/account";
+  const requestedNext = search.get("next") || "/account";
+  const next = requestedNext.startsWith("/") && !requestedNext.startsWith("//") ? requestedNext : "/account";
   const configured = Boolean(process.env.NEXT_PUBLIC_SUPABASE_URL && process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY);
 
   async function login(e: React.FormEvent<HTMLFormElement>) {
