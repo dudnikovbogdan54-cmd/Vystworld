@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import { Crown, Gem, Package } from "lucide-react";
 import { catalog } from "@/lib/catalog";
 import { createClient } from "@/lib/supabase/client";
 
@@ -28,9 +29,9 @@ export default function ShopPage() {
   return <main className="container page">
     <div className="sectionhead"><div className="shop-intro"><span className="tag">VystWorld Store</span><h1 style={{fontSize:42,margin:"12px 0 8px"}}>Магазин VystWorld</h1><p>Привилегии, наборы и ресурсы для твоей игры. Выбирай категорию и сравнивай товары.</p></div></div>
     <div className="field" style={{maxWidth:380}}><label htmlFor="nick">Твой Minecraft-ник</label><input id="nick" value={nickname} onChange={e=>setNickname(e.target.value)} placeholder="Например, Steve_123" maxLength={16}/></div>
-    <div className="shop-categories" aria-label="Категории магазина">{([["all","Все товары"],["rank","👑 Привилегии"],["kits","🎁 Наборы"],["resources","💎 Ресурсы"]] as const).map(([v,label])=><button className={`btn ${category===v?"primary":""}`} key={v} onClick={()=>setCategory(v)} aria-pressed={category===v}>{label}</button>)}</div>
+    <div className="shop-categories" aria-label="Категории магазина">{([["all","Все товары"],["rank","Привилегии"],["kits","Наборы"],["resources","Ресурсы"]] as const).map(([v,label])=><button className={`btn ${category===v?"primary":""}`} key={v} onClick={()=>setCategory(v)} aria-pressed={category===v}>{label}</button>)}</div>
     {message && <div className="notice error">{message}</div>}
-    <div className="grid">{items.map(p=><article className="card shop-product" key={p.id}><span className="tag">{p.category==="rank"?"Привилегия":p.category==="kits"?"Игровой набор":"Ресурс"}</span><div className="category-icon" aria-hidden="true">{p.category==="rank"?"👑":p.category==="kits"?"🎁":"💎"}</div><h3>{p.name}</h3><p>{p.description}</p><div className="price">{p.price} ₽</div><button className="btn primary" disabled={busy!==null} onClick={()=>buy(p.id)}>{busy===p.id?"Создаём заказ…":"Купить →"}</button></article>)}</div>
+    <div className="grid">{items.map(p=><article className="card shop-product" key={p.id}><span className="tag">{p.category==="rank"?"Привилегия":p.category==="kits"?"Игровой набор":"Ресурс"}</span><div className="category-icon" aria-hidden="true">{p.category==="rank"?<Crown size={25} strokeWidth={1.8}/>:p.category==="kits"?<Package size={25} strokeWidth={1.8}/>:<Gem size={25} strokeWidth={1.8}/>}</div><h3>{p.name}</h3><p>{p.description}</p><div className="price">{p.price} ₽</div><button className="btn primary" disabled={busy!==null} onClick={()=>buy(p.id)}>{busy===p.id?"Создаём заказ…":"Купить →"}</button></article>)}</div>
     <p className="muted" style={{fontSize:12,marginTop:22}}>Цены и игровые команды — примерные настройки проекта. Перед запуском проверь содержимое товаров, правила сервера и условия продажи.</p>
   </main>;
 }
