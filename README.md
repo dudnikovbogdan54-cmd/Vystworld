@@ -5,7 +5,8 @@
 ## Что включено
 - Главная страница и адаптивный магазин на русском языке.
 - Регистрация и вход через Supabase Auth (email/пароль и Google OAuth).
-- Личный кабинет и история заказов.
+- Личный кабинет, история заказов, готовые аватарки и цветовые темы.
+- Закрытая админ-панель: список аккаунтов и журнал успешных входов (IP/время/браузер).
 - Серверное создание платежей YooKassa и проверка webhook через API YooKassa.
 - SQL-схема Supabase с Row Level Security.
 - Исходники экспериментального Paper/Purpur bridge-плагина для доставки заказов.
@@ -16,7 +17,7 @@
 1. Установи Node.js 20+ и Git.
 2. Скопируй `.env.example` в `.env.local`.
 3. Создай проект Supabase и заполни значения Supabase в `.env.local`.
-4. В Supabase Dashboard → SQL Editor выполни `supabase/schema.sql`.
+4. В Supabase Dashboard → SQL Editor выполни `supabase/schema.sql`, затем `supabase/account-features.sql`.
 5. В папке проекта выполни `npm install`, затем `npm run dev`.
 6. Открой `http://localhost:3000`.
 
@@ -28,6 +29,13 @@
 5. Настрой SMTP и подтверждение почты для email/password регистрации.
 
 Документация: https://supabase.com/docs/guides/auth/social-login/auth-google
+
+## Админ-панель и журнал входов
+1. В Vercel → Settings → Environment Variables задай `ADMIN_EMAIL` как точный email администратора.
+2. Задай `SUPABASE_SERVICE_ROLE_KEY` серверным секретом (не добавляй префикс `NEXT_PUBLIC_` и никогда не публикуй его).
+3. Выполни `supabase/account-features.sql` в Supabase SQL Editor. Журнал входов не имеет клиентских RLS-политик и читается только сервером.
+4. После входа открой `/admin`. Список аккаунтов показывает до 100 пользователей за раз, журнал — последние 200 успешных входов. IP записывается только если хостинг передаёт `x-real-ip`; неудачные попытки входа не журналируются.
+5. Добавь страницу политики конфиденциальности и сообщи пользователям о сборе IP-адресов. IP — персональные данные; ограничь срок хранения и доступ.
 
 ## YooKassa
 1. Создай/настрой магазин YooKassa и получи shop ID и API secret.
