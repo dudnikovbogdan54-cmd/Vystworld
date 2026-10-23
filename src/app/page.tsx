@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { catalog } from "@/lib/catalog";
 import CopyIp from "./copy-ip";
-import { Pickaxe, UsersRound, Sprout } from "lucide-react";
+import { ArrowUpRight, Pickaxe, UsersRound, Sprout } from "lucide-react";
 
 const steps = [
   { n: "01", title: "Скопируй адрес", text: "Нажми кнопку копирования рядом с IP сервера." },
@@ -23,7 +23,7 @@ export default function Home() {
       <div className="eyebrow"><span className="dot"/> Minecraft · Purpur 1.21.11</div>
       <h1>Твой мир.<br/><span>Твои правила.</span></h1>
       <p>VystWorld — место для приключений, развития и игры вместе с друзьями. Заходи, исследуй мир и создавай собственную историю.</p>
-      <div className="actions"><Link href="#connect" className="btn primary">Начать играть <span aria-hidden="true">↗</span></Link><Link href="/shop" className="btn">Открыть магазин</Link></div>
+      <div className="actions"><Link href="#connect" className="btn primary">Начать играть <ArrowUpRight size={16} aria-hidden="true" /></Link><Link href="/shop" className="btn">Открыть магазин</Link></div>
       <div className="serverbar"><span className="dot"/><span>АДРЕС СЕРВЕРА</span><strong id="server-ip">vystworld.aternos.me</strong><CopyIp/></div>
       <p className="hero-note">Сервер размещён на Aternos и может быть выключен, когда никто не играет.</p>
       <div className="hero-stats"><div><strong>1.21.11</strong><span>Версия проекта</span></div><div><strong>Вместе</strong><span>Играй с друзьями</span></div><div><strong>Твой выбор</strong><span>Твой стиль игры</span></div></div>
