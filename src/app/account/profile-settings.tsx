@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { CircleUserRound, Crown, Gem, PawPrint, Pickaxe, Shield, Swords, WandSparkles } from "lucide-react";
+import { Crown, Gem, PawPrint, Pickaxe, Shield, Swords, WandSparkles } from "lucide-react";
 import { createClient } from "@/lib/supabase/client";
 
 const avatars = [
