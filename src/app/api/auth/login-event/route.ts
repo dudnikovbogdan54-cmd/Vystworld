@@ -12,6 +12,8 @@ export async function POST(request: NextRequest) {
     const ip = request.headers.get("x-real-ip")?.trim().slice(0, 64) || null;
     const userAgent = request.headers.get("user-agent")?.slice(0, 500) || null;
     const admin = createAdminClient();
+    const { data: recent } = await admin.from("login_events").select("id").eq("user_id", user.id).gte("created_at", new Date(Date.now() - 30_000).toISOString()).limit(1);
+    if (recent?.length) return NextResponse.json({ ok: true, logging: true });
     const { error } = await admin.from("login_events").insert({
       user_id: user.id, email: user.email ?? null, ip_address: ip, user_agent: userAgent, event_type: "login_success"
     });
