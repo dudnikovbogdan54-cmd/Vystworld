@@ -27,7 +27,7 @@ export default async function AccountPage() {
 
   return <main className="container page"><div className="sectionhead"><div><h1 style={{fontSize:40,margin:"0 0 8px"}}>Личный кабинет</h1><p>{user.email}</p></div><SignOutButton/></div>
     <div className="tabs"><Link className="active" href="/account">Мои заказы</Link><Link href="/shop">Магазин</Link>{process.env.ADMIN_EMAIL && user.email && user.email.toLowerCase() === process.env.ADMIN_EMAIL.trim().toLowerCase() && <Link href="/admin">Админ-панель</Link>}</div>
-    <ProfileSettings userId={user.id} initialName={profile?.display_name ?? ""} initialAvatar={profile?.avatar ?? "🟩"} initialTheme={profile?.theme ?? "green"} />
+    <ProfileSettings userId={user.id} initialName={profile?.display_name ?? ""} initialAvatar={profile?.avatar ?? "creeper"} initialTheme={profile?.theme ?? "green"} />
     <section className="card"><h2 style={{marginTop:0}}>История заказов</h2>{orders?.length ? <div style={{overflowX:"auto"}}><table className="table"><thead><tr><th>Товар</th><th>Ник</th><th>Сумма</th><th>Статус</th><th>Дата</th></tr></thead><tbody>{orders.map(o=><tr key={o.id}><td>{o.product_name}</td><td>{o.minecraft_nick}</td><td>{Number(o.amount).toFixed(2)} {o.currency}</td><td><span className="pill">{o.status}</span></td><td>{new Date(o.created_at).toLocaleDateString("ru-RU")}</td></tr>)}</tbody></table></div>:<div className="empty">Заказов пока нет. <Link href="/shop" style={{color:"var(--green)"}}>Открыть магазин →</Link></div>}</section>
     <p className="muted" style={{fontSize:12,marginTop:18}}>Аккаунт: {user.id}</p></main>;
 }
