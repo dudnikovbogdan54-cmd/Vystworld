@@ -1,0 +1,6 @@
+name: VystWorldBridge
+version: 1.0.0
+main: me.vystworld.bridge.VystWorldBridge
+api-version: '1.21'
+description: Connects VystWorld website orders to a Purpur/Paper server.
+author: VystWorld
