@@ -43,7 +43,7 @@ function LoginForm() {
       <h1>С возвращением</h1><p className="muted">Войди в аккаунт VystWorld.</p>
       {!configured && <div className="notice">Авторизация ещё не подключена. Главная страница сайта доступна, но для входа администратору нужно настроить Supabase.</div>}
       {error && <div className="notice error">{error}</div>}
-      <button className="btn wide" onClick={google} disabled={!configured}>◎ Продолжить с Google</button>
+      <button className="btn wide" onClick={google} disabled={!configured}><span className="google-mark" aria-hidden="true">G</span> Продолжить с Google</button>
       <div style={{textAlign:"center",color:"var(--muted)",fontSize:12,margin:"18px 0"}}>или по электронной почте</div>
       <form onSubmit={login}>
         <div className="field"><label htmlFor="email">Email</label><input id="email" type="email" autoComplete="email" required value={email} onChange={e=>setEmail(e.target.value)}/></div>
