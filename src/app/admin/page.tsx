@@ -6,13 +6,14 @@ import { createAdminClient } from "@/lib/supabase/admin";
 export const dynamic = "force-dynamic";
 
 export default async function AdminPage() {
+  if (!process.env.NEXT_PUBLIC_SUPABASE_URL || !process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY) return <main className="container page"><section className="formbox"><h1>Админ-панель пока не настроена</h1><p className="muted">Сначала подключи Supabase в переменных окружения Vercel.</p><Link className="btn" href="/">На главную</Link></section></main>;
   const supabase = await createClient();
   const { data: { user } } = await supabase.auth.getUser();
   const adminEmail = process.env.ADMIN_EMAIL?.trim().toLowerCase();
   if (!user) redirect("/login?next=/admin");
   if (!adminEmail || user.email?.toLowerCase() !== adminEmail) redirect("/account");
 
-  if (!process.env.SUPABASE_SERVICE_ROLE_KEY) return <main className="container page"><section className="formbox"><h1>Админ-панель</h1><div className="notice">Добавь SUPABASE_SERVICE_ROLE_KEY в переменные окружения Vercel, а также выполни SQL из supabase/schema.sql.</div><Link className="btn" href="/account">В личный кабинет</Link></section></main>;
+  if (!process.env.SUPABASE_SERVICE_ROLE_KEY) return <main className="container page"><section className="formbox"><h1>Админ-панель</h1><div className="notice">Добавь SUPABASE_SERVICE_ROLE_KEY в переменные окружения Vercel и выполни supabase/schema.sql вместе с supabase/account-features.sql.</div><Link className="btn" href="/account">В личный кабинет</Link></section></main>;
 
   let users: Array<{id:string;email?:string;created_at:string;last_sign_in_at?:string;app_metadata?:Record<string,unknown>}> = [];
   let events: Array<{id:string;email:string|null;ip_address:string|null;user_agent:string|null;event_type:string;created_at:string}> = [];
