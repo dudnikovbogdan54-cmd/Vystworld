@@ -87,10 +87,10 @@ alter table public.login_events enable row level security;
 -- Intentionally no policies: only server-side service-role requests can read/write this table.
 
 -- Automatically purge login audit entries older than 90 days whenever a new entry is written.
+-- This trigger runs as the inserting service-role request; SECURITY DEFINER is not needed.
 create or replace function public.purge_old_login_events()
 returns trigger
 language plpgsql
-security definer
 set search_path = public
 as $$
 begin
@@ -98,6 +98,10 @@ begin
   return new;
 end;
 $$;
+
+revoke all on function public.purge_old_login_events() from public;
+revoke all on function public.purge_old_login_events() from anon, authenticated;
+
 drop trigger if exists login_events_retention_trigger on public.login_events;
 create trigger login_events_retention_trigger
 after insert on public.login_events
