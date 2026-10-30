@@ -237,3 +237,39 @@ button,.btn{min-height:44px}
  .sectionhead h2{font-size:26px}.card h3{font-size:18px}
  .formbox h1{font-size:23px}
 }
+
+/* Non-blocking network hint shown only for recognized VPN/hosting ASNs. */
+.network-notice{
+  width:min(1080px,calc(100% - 40px));
+  margin:10px auto 0;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:16px;
+  padding:13px 16px;
+  border:1px solid #315b83;
+  border-radius:12px;
+  background:linear-gradient(120deg,#102235,#101a27);
+  color:#e7f3ff;
+}
+.network-notice strong{display:block;font-size:13px}
+.network-notice p{margin:4px 0 0;color:#b8cce0;font-size:12px;line-height:1.55}
+.network-notice button{
+  flex:0 0 auto;
+  min-height:36px;
+  padding:7px 12px;
+  border:1px solid #45698b;
+  border-radius:9px;
+  background:#172b40;
+  color:#e7f3ff;
+  font-size:12px;
+}
+.profile-avatar{overflow:hidden;padding:0}
+.profile-avatar img{display:block;width:100%;height:100%;object-fit:cover;image-rendering:pixelated}
+.preset img{display:block;width:44px;height:44px;object-fit:contain;image-rendering:pixelated}
+@media(max-width:600px){
+  .network-notice{width:calc(100% - 24px);align-items:flex-start;padding:11px 12px;gap:10px}
+  .network-notice strong{font-size:12px}
+  .network-notice p{font-size:11px}
+  .network-notice button{font-size:11px;padding:6px 9px}
+}
