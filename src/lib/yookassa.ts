@@ -1,6 +1,7 @@
 import { randomUUID } from "node:crypto";
 
 const api = "https://api.yookassa.ru/v3";
+const requestTimeout = 10_000;
 
 function credentials() {
   const shop = process.env.YOOKASSA_SHOP_ID;
@@ -26,7 +27,8 @@ export async function createYooKassaPayment(input: {
       description: input.description.slice(0, 128),
       metadata: { order_id: input.orderId }
     }),
-    cache: "no-store"
+    cache: "no-store",
+    signal: AbortSignal.timeout(requestTimeout)
   });
   const data = await response.json();
   if (!response.ok) throw new Error(`YooKassa payment creation failed (${response.status}).`);
@@ -35,7 +37,9 @@ export async function createYooKassaPayment(input: {
 
 export async function getYooKassaPayment(paymentId: string) {
   const response = await fetch(`${api}/payments/${encodeURIComponent(paymentId)}`, {
-    headers: { Authorization: credentials() }, cache: "no-store"
+    headers: { Authorization: credentials() },
+    cache: "no-store",
+    signal: AbortSignal.timeout(requestTimeout)
   });
   if (!response.ok) throw new Error(`Could not verify payment (${response.status}).`);
   return await response.json() as {
