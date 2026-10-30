@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { ChangeEvent, useEffect, useState } from "react";
 import { createClient } from "@/lib/supabase/client";
 
@@ -120,7 +121,7 @@ export default function ProfileSettings({ userId, initialName, initialAvatar, in
     <h2 style={{ marginTop: 0 }}>Оформление профиля</h2>
     <div className="profile-preview">
       <span className="profile-avatar">
-        <img src={avatarSource(avatar)} alt="Фото профиля" width={58} height={58} />
+        <Image src={avatarSource(avatar)} alt="Фото профиля" width={58} height={58} unoptimized />
       </span>
       <div><strong>{name.trim() || "Игрок VystWorld"}</strong><p className="muted" style={{ margin: "4px 0 0" }}>Предпросмотр аккаунта</p></div>
     </div>
@@ -140,7 +141,7 @@ export default function ProfileSettings({ userId, initialName, initialAvatar, in
     <div className="preset-grid">
       {avatars.map((item) => (
         <button type="button" key={item.value} className={avatar === item.value ? "preset active" : "preset"} onClick={() => setAvatar(item.value)} aria-pressed={avatar === item.value}>
-          <img src={item.image} alt="" width={44} height={44} loading="lazy" />
+          <Image src={item.image} alt="" width={44} height={44} loading="lazy" unoptimized />
           <small>{item.label}</small>
         </button>
       ))}
