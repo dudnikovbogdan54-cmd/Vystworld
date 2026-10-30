@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import Link from "next/link";
 import "./globals.css";
 import ThemeProvider from "./theme-provider";
+import NetworkNotice from "@/components/network-notice";
 
 export const viewport: Viewport = { width: "device-width", initialScale: 1, viewportFit: "cover" };
 
@@ -14,6 +15,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return <html lang="ru"><body>
     <ThemeProvider />
+    <NetworkNotice />
     <header className="container nav">
       <Link href="/" className="brand" aria-label="VystWorld — главная"><span className="logo">V</span><span>VystWorld</span></Link>
       <nav className="navlinks" aria-label="Основная навигация"><Link href="/#about">О сервере</Link><Link href="/#connect">Подключение</Link><Link href="/#rules">Правила</Link><Link href="/shop">Магазин</Link><Link href="/#faq">FAQ</Link></nav>
